@@ -1,15 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { User, GraduationCap, Gamepad2, Bug } from "lucide-react";
-
 const About = () => {
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+    contactSection?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  return (
-    <section id="about" className="py-20 portfolio-bg">
+  return <section id="about" className="py-20 portfolio-bg">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold gradient-text mb-4">About Me</h2>
@@ -73,18 +72,10 @@ const About = () => {
           </Card>
           
           <div className="text-center">
-            <Button 
-              onClick={scrollToContact}
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-3 text-lg portfolio-glow"
-            >
-              Get in touch
-            </Button>
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
