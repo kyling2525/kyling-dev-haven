@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Terminal } from "lucide-react";
-
 const Hero = () => {
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
-    contactSection?.scrollIntoView({ behavior: 'smooth' });
+    contactSection?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  return (
-    <section className="min-h-screen flex items-center justify-center portfolio-bg relative overflow-hidden">
+  return <section className="min-h-screen flex items-center justify-center portfolio-bg relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
@@ -23,13 +22,9 @@ const Hero = () => {
           </div>
         </div>
         
-        <h1 className="text-7xl font-bold mb-4 gradient-text animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          Kyling
-        </h1>
         
-        <p className="text-2xl text-portfolio-text-muted mb-2 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-          (Hiếu Anh)
-        </p>
+        
+        
         
         <div className="text-xl text-portfolio-text mb-8 space-y-2 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
           <p className="text-2xl font-medium">Hello, I'm Kyling</p>
@@ -37,10 +32,7 @@ const Hero = () => {
         </div>
         
         <div className="flex justify-center gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
-          <Button 
-            onClick={scrollToContact}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg portfolio-glow group"
-          >
+          <Button onClick={scrollToContact} className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg portfolio-glow group">
             Get in touch
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
@@ -51,8 +43,6 @@ const Hero = () => {
           <div className="w-1 h-16 bg-gradient-to-b from-primary to-transparent rounded-full"></div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
