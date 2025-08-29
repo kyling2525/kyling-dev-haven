@@ -1,25 +1,24 @@
-name: CI/CD React App
+name: CI/CD Vite App
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 permissions:
-  contents: write   # Cho phép ghi vào repo (cần để deploy)
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🏗 Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: "npm"
+          node-version: 20
+          cache: npm
 
       - name: 📦 Install dependencies
         run: npm ci
@@ -27,11 +26,15 @@ jobs:
       - name: 🛠 Build project
         run: npm run build
 
+      # Fallback cho SPA/deep-link
+      - name: 🔁 Create 404.html
+        run: cp dist/index.html dist/404.html
+
       - name: 📤 Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: react-build
-          path: ./build
+          name: vite-build          # <— đặt tên artifact
+          path: dist                # <— Vite xuất dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -40,13 +43,13 @@ jobs:
       - name: 📥 Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: react-build
-          path: ./build
+          name: vite-build          # <— trùng tên ở trên
+          path: dist
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./dist       # <— deploy thư mục dist
           publish_branch: gh-pages
           force_orphan: true
